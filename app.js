@@ -31,6 +31,18 @@ registerListeners(slackApp);
 /**START APP */
 app.post('/sendmessage', async (_req, res) => {
   try {
+    const apiKey = process.env.API_KEY;
+
+    if (!apiKey) {
+      return res.status(500).json({ error: 'Server is missing API_KEY configuration' });
+    }
+
+    const authHeader = _req.headers.authorization;
+
+    if (authHeader !== apiKey) {
+      return res.status(401).json({ error: 'Invalid API key' });
+    }
+
     const { userId, category, message } = _req.body ?? {};
 
     if (!userId || !category || !message) {
