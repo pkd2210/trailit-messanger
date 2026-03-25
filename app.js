@@ -133,7 +133,7 @@ app.post('/sendmessage', async (_req, res) => {
             },
             {
               type: 'mrkdwn',
-              text: 'For every problam, fell free to contact me *@peleg2210*',
+              text: 'For any problam, fell free to contact me *@peleg2210*',
             },
           ],
         },
